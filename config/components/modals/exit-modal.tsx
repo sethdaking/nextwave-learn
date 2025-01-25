@@ -14,19 +14,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useHeartsModal } from "@/store/use-hearts-modal";
+import { useExitModal } from "@/app/store/use-exit-modal";
 
-export const HeartsModal = () => {
+export const ExitModal = () => {
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
-  const { isOpen, close } = useHeartsModal();
+  const { isOpen, close } = useExitModal();
 
   useEffect(() => setIsClient(true), []);
-
-  const onClick = () => {
-    close();
-    router.push("/store");
-  };
 
   if (!isClient) return null;
 
@@ -36,19 +31,19 @@ export const HeartsModal = () => {
         <DialogHeader>
           <div className="mb-5 flex w-full items-center justify-center">
             <Image
-              src="/mascot_bad.svg"
-              alt="Mascot Bad"
+              src="/mascot_sad.svg"
+              alt="Mascot Sad"
               height={80}
               width={80}
             />
           </div>
 
           <DialogTitle className="text-center text-2xl font-bold">
-            You ran out of hearts!
+            Wait, don&apos;t go!
           </DialogTitle>
 
           <DialogDescription className="text-center text-base">
-            Get Pro for unlimited hearts, or purchase them in the store.
+            You&apos;re about to leave the lesson. Are you sure?
           </DialogDescription>
         </DialogHeader>
 
@@ -58,18 +53,21 @@ export const HeartsModal = () => {
               variant="primary"
               className="w-full"
               size="lg"
-              onClick={onClick}
+              onClick={close}
             >
-              Get unlimited hearts
+              Keep learning
             </Button>
 
             <Button
-              variant="primaryOutline"
+              variant="dangerOutline"
               className="w-full"
               size="lg"
-              onClick={close}
+              onClick={() => {
+                close();
+                router.push("/learn");
+              }}
             >
-              No thanks
+              End session
             </Button>
           </div>
         </DialogFooter>

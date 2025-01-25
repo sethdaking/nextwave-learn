@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -13,13 +14,19 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { usePracticeModal } from "@/store/use-practice-modal";
+import { useHeartsModal } from "@/app/store/use-hearts-modal";
 
-export const PracticeModal = () => {
+export const HeartsModal = () => {
+  const router = useRouter();
   const [isClient, setIsClient] = useState(false);
-  const { isOpen, close } = usePracticeModal();
+  const { isOpen, close } = useHeartsModal();
 
   useEffect(() => setIsClient(true), []);
+
+  const onClick = () => {
+    close();
+    router.push("/store");
+  };
 
   if (!isClient) return null;
 
@@ -28,16 +35,20 @@ export const PracticeModal = () => {
       <DialogContent className="max-w-md">
         <DialogHeader>
           <div className="mb-5 flex w-full items-center justify-center">
-            <Image src="/heart.svg" alt="Heart" height={100} width={100} />
+            <Image
+              src="/mascot_bad.svg"
+              alt="Mascot Bad"
+              height={80}
+              width={80}
+            />
           </div>
 
           <DialogTitle className="text-center text-2xl font-bold">
-            Practice lesson
+            You ran out of hearts!
           </DialogTitle>
 
           <DialogDescription className="text-center text-base">
-            Use practice lessons to regain hearts and points. You cannot loose
-            hearts or points in practice lessons.
+            Get Pro for unlimited hearts, or purchase them in the store.
           </DialogDescription>
         </DialogHeader>
 
@@ -47,9 +58,18 @@ export const PracticeModal = () => {
               variant="primary"
               className="w-full"
               size="lg"
+              onClick={onClick}
+            >
+              Get unlimited hearts
+            </Button>
+
+            <Button
+              variant="primaryOutline"
+              className="w-full"
+              size="lg"
               onClick={close}
             >
-              I understand
+              No thanks
             </Button>
           </div>
         </DialogFooter>
