@@ -12,8 +12,8 @@ import { upsertChallengeProgress } from "@/actions/challenge-progress";
 import { reduceHearts } from "@/actions/user-progress";
 import { MAX_HEARTS } from "@/constants";
 import { challengeOptions, challenges, userSubscription } from "@/db/schema";
-import { useHeartsModal } from "@/app/store/use-hearts-modal";
-import { usePracticeModal } from "@/app/store/use-practice-modal";
+import { useHeartsModal } from "@/app/(main)/store/use-hearts-modal";
+import { usePracticeModal } from "@/app/(main)/store/use-practice-modal";
 
 import { Challenge } from "./challenge";
 import { Footer } from "./footer";

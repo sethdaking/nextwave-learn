@@ -14,7 +14,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useExitModal } from "@/app/store/use-exit-modal";
+import { useExitModal } from "@/app/(main)/store/use-exit-modal";
 
 export const ExitModal = () => {
   const router = useRouter();

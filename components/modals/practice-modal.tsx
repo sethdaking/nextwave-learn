@@ -13,7 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { usePracticeModal } from "@/app/store/use-practice-modal";
+import { usePracticeModal } from "@/app/(main)/store/use-practice-modal";
 
 export const PracticeModal = () => {
   const [isClient, setIsClient] = useState(false);

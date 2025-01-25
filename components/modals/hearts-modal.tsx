@@ -14,7 +14,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useHeartsModal } from "@/app/store/use-hearts-modal";
+import { useHeartsModal } from "@/app/(main)/store/use-hearts-modal";
 
 export const HeartsModal = () => {
   const router = useRouter();
@@ -25,7 +25,7 @@ export const HeartsModal = () => {
 
   const onClick = () => {
     close();
-    router.push("/store");
+    router.push("/shop");
   };
 
   if (!isClient) return null;
